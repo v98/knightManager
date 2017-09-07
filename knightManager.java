@@ -111,9 +111,10 @@ class Knight implements Comparable<Knight>{
 			throw new QueenFoundException("QueenFoundException: Queeen has been found.Abort!");
 		}
 	}
-	public int popbox(){
+	public int popbox()throws IOException{
 		int val=0;
 		size-=1;
+		
 		try{
 			emptybox();
 			Element e=box.get(size);
@@ -123,22 +124,32 @@ class Knight implements Comparable<Knight>{
 			yk=temp.gety();
 			isOverlap();
 			foundQueen();
-			System.out.println("No exception "+xk+" "+yk);
+			BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
+			writer.write("No exception "+xk+" "+yk+"\n");
+			writer.close();
 
 		}
 		catch(StackEmptyException m){
-			System.out.println(m.getMessage());
+			BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
+			writer.write(m.getMessage()+"\n");
+			writer.close();
 
 		}
 		catch(NonCoordinateException m){
-			System.out.println(m.getMessage()+" "+box.get(size).getvalue());
+			BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
+			writer.write(m.getMessage()+" "+box.get(size).getvalue()+"\n");
+			writer.close();
 		}
 		catch(OverlapException m){
-			System.out.println(m.getMessage());
+			BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
+			writer.write(m.getMessage()+"\n");
+			writer.close();
 		}
 		catch(QueenFoundException m){
 			val=1;
-			System.out.println(m.getMessage());
+			BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
+			writer.write(m.getMessage()+"\n");
+			writer.close();
 		}
 		return val;
 
@@ -226,13 +237,15 @@ public class knightManager{
 		// for (Knight kill : q1 ) {
 		// 	System.out.println(kill);
 		// }
-
+		//BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
 		for(int lol=1;lol<=n_itr;lol++){
 			int val=0;
 			//System.out.print(lol+" ");
 			for (Knight kill : q1 ) {
 				if(kill.isalive()){
-					System.out.println(lol+" "+kill);
+					BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
+					writer.write(lol+" "+kill+"\n");
+					writer.close();
 					int t=kill.popbox();
 					if(t==1){
 						val=1;
@@ -245,6 +258,7 @@ public class knightManager{
 				break;
 			}
 		}
+		//writer.close();
 		
 	}
 	
