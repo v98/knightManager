@@ -84,7 +84,7 @@ class Knight implements Comparable<Knight>{
 
 	public void isCoordinate(String str2) throws NonCoordinateException{
 		if(!(str2.equals("Coordinate"))){
-			throw new NonCoordinateException(": Not a coordinate Exception");
+			throw new NonCoordinateException("NonCoordinateException: Not a coordinate Exception");
 		}
 
 	}
@@ -92,7 +92,7 @@ class Knight implements Comparable<Knight>{
 	public void emptybox() throws StackEmptyException{
 		if(size<0){
 			this.dead();
-			throw new StackEmptyException(": Stack Empty exception");
+			throw new StackEmptyException("StackEmptyException: Stack Empty exception");
 		}
 
 	}
@@ -101,14 +101,14 @@ class Knight implements Comparable<Knight>{
 		for(Knight lol : main){
 			if(getx()==lol.getx() && gety()==lol.gety()&& (!(name.equals(lol.getname())))){
 				lol.dead();
-				throw new OverlapException(": Knights overlap Exception "+lol.getname()); 
+				throw new OverlapException("OverlapException: Knights overlap Exception "+lol.getname()); 
 			}
 		}
 	}
 
 	public void foundQueen()throws QueenFoundException{
 		if(getx()==xQ &&gety()==yQ){
-			throw new QueenFoundException(": Queeen has been found.Abort!");
+			throw new QueenFoundException("QueenFoundException: Queeen has been found.Abort!");
 		}
 	}
 	public int popbox(){
@@ -123,7 +123,7 @@ class Knight implements Comparable<Knight>{
 			yk=temp.gety();
 			isOverlap();
 			foundQueen();
-			System.out.println("No exception"+xk+" "+yk);
+			System.out.println("No exception "+xk+" "+yk);
 
 		}
 		catch(StackEmptyException m){
